@@ -52,15 +52,15 @@ export async function enrollment(req: Request, res: Response, next: NextFunction
 
         await enrollment.save();
 
-        // Populate enrollment with student data and user name
-        // const populatedEnrollment = await EnrollmentModel.findById(enrollment.id).populate({
-        //     path: "student",
-        //     select: "_id",
-        //     populate: {
-        //         path: "user",
-        //         select: "name email",
-        //     },
-        // });
+        Populate enrollment with student data and user name
+        const populatedEnrollment = await EnrollmentModel.findById(enrollment.id).populate({
+            path: "student",
+            select: "_id",
+            populate: {
+                path: "user",
+                select: "name email",
+            },
+        });
 
         const course = await Course.findById(courseId);
         if(!course){
